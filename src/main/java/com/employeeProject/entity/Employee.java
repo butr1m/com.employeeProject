@@ -1,10 +1,7 @@
 package com.employeeProject.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 
 @Entity
@@ -37,8 +34,10 @@ public class Employee {
     @Pattern(regexp = "\\d{1}-\\d{3}-\\d{3}-\\d{2}-\\d{2}", message = "Please use pattern X-XXX-XXX-XX-XX")
     private String phoneNumber;
 
+    @Column(name="marital_status")
+    private String maritalStatus;
+
     @Column(name = "department")
-    @NotBlank(message = "Department is required field")
     private String department;
 
     @Column(name = "salary")
@@ -48,12 +47,13 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String surname, int age, String email, String phoneNumber, String department, int salary) {
+    public Employee(String name, String surname, int age, String email, String phoneNumber,String maritalStatus, String department, int salary) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
+
         this.department = department;
         this.salary = salary;
     }
@@ -66,7 +66,8 @@ public class Employee {
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
                 ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", maritalStatus='" + maritalStatus + '\'' +
                 ", department='" + department + '\'' +
                 ", salary=" + salary +
                 '}';
@@ -118,6 +119,14 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 
     public String getDepartment() {

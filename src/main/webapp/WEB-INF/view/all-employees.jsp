@@ -13,6 +13,7 @@
         <th> Age</th>
         <th> Email</th>
         <th> Phone number</th>
+        <th> Marital status</th>
         <th> Department</th>
         <th> Salary</th>
         <th> Operations</th>
@@ -35,6 +36,7 @@
             <td>${emp.age}</td>
             <td>${emp.email}</td>
             <td>${emp.phoneNumber}</td>
+            <td>${emp.maritalStatus}</td>
             <td>${emp.department}</td>
             <td>${emp.salary}</td>
             <td>
