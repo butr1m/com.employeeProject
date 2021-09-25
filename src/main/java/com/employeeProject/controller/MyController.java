@@ -6,10 +6,12 @@ import com.employeeProject.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -20,6 +22,7 @@ public class MyController {
 
     @RequestMapping("/")
     public String showAllEmployees(Model model) {
+
 
         List<Employee> allEmployees = employeeService.getAllEmployees();
         model.addAttribute("allEmps", allEmployees);
@@ -37,25 +40,27 @@ public class MyController {
     }
 
     @RequestMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee){
+    public String saveEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
 
-
-        employeeService.saveEmployee(employee);
-
-        return "redirect:/";
+        if (bindingResult.hasErrors()) {
+            return "employee-info";
+        } else {
+            employeeService.saveEmployee(employee);
+            return "redirect:/";
+        }
     }
 
     @RequestMapping("/updateInfo")
-    public String updateEmployee(@RequestParam("empId") int id,Model model){
+    public String updateEmployee(@RequestParam("empId") int id, Model model) {
 
-        Employee employee=employeeService.getEmployee(id);
-        model.addAttribute("employee",employee);
+        Employee employee = employeeService.getEmployee(id);
+        model.addAttribute("employee", employee);
 
         return "employee-info";
     }
 
     @RequestMapping("/deleteEmployee")
-    public String deleteEmployee(@RequestParam("empId") int id){
+    public String deleteEmployee(@RequestParam("empId") int id) {
 
         employeeService.deleteEmployee(id);
 

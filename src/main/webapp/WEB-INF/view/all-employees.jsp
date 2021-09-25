@@ -10,6 +10,9 @@
     <tr>
         <th> Name</th>
         <th> Surname</th>
+        <th> Age</th>
+        <th> Email</th>
+        <th> Phone number</th>
         <th> Department</th>
         <th> Salary</th>
         <th> Operations</th>
@@ -29,6 +32,9 @@
         <tr>
             <td>${emp.name}</td>
             <td>${emp.surname}</td>
+            <td>${emp.age}</td>
+            <td>${emp.email}</td>
+            <td>${emp.phoneNumber}</td>
             <td>${emp.department}</td>
             <td>${emp.salary}</td>
             <td>
